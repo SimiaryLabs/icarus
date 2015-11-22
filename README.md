@@ -5,7 +5,7 @@ A python utility for uploading collections to pteraformer
 
 Copy icarus.py into the directory you want to upload, then run:
 
-icarus.py -i <inputDirectory> -n <CorporaName> -c <NextAvailableCorporaID> -d <NextAvailableDocumentID>
+icarus.py -i 'inputDirectory' -n 'CorporaName' -c 'NextAvailableCorporaID' -d 'NextAvailableDocumentID'
 
 ### To function 
 
