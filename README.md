@@ -1,11 +1,15 @@
 # icarus
 A python utility for uploading collections to pteraformer
 
-To run
+### To run
+
+Copy icarus.py into the directory you want to upload, then run:
 
 icarus.py -i <inputDirectory> -n <CorporaName> -c <NextAvailableCorporaID> -d <NextAvailableDocumentID>
 
-To function it requires installing the following python packages
+### To function 
+
+Icarus requires installing the following python packages
 
 pdfminer - $ pip install pdfminer
 
