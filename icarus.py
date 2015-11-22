@@ -50,7 +50,7 @@ def insert_callback(error, data):
         print(error)
         return
 
-def processDirectory(path, newCorporaName):
+def processDirectory(path, newCorporaName, newCorporaID, nextDocumentID):
    
    print("Processing files...")
 
@@ -59,9 +59,9 @@ def processDirectory(path, newCorporaName):
    client.connect()
 
    # ID of the next available Document record
-   id = 50
+   id = nextDocumentID
    # ID of the next available Corpus record
-   corpusID = 9
+   corpusID = newCorporaID
 
    # Create a new Collection
    client.insert('corpora', { '_id': str(corpusID), 'owner': "public", 'properties': { '@context': 'http://schema.org', 'name': newCorporaName, 'modifyDate': '14/6/14'}})
@@ -117,24 +117,28 @@ def main(argv):
    inputDiretory = ''
 
    try:
-      opts, args = getopt.getopt(argv,"hd:n:",["directory=", "name="])
+      opts, args = getopt.getopt(argv,"hi:n:c:d:",["directory=", "name=", "corporaID=", "documentID="])
    except getopt.GetoptError:
       print 'icarus.py -d <inputDirectory>'
       sys.exit(2)
 
    for opt, arg in opts:
       if opt == '-h':
-         print 'icarus.py -d <inputDiretory>'
+         print 'icarus.py -i <inputDirectory> -n <CorporaName> -c <NextAvailableCorporaID> -d <NextAvailableDocumentID>'
          sys.exit()
-      elif opt in ("-d", "--directory"):
+      elif opt in ("-i", "--directory"):
          inputDiretory = arg
-      elif opt in ("-n", "--nama"):
+      elif opt in ("-n", "--name"):
          corpusName = arg
+      elif opt in ("-c", "--corporaID"):
+         corpusID = arg
+      elif opt in ("-d", "--documentID"):
+         documentID = arg
 
 
    print 'Input Directory is', inputDiretory
    print 'New Corpora name is', corpusName
-   processDirectory(inputDiretory, corpusName)
+   processDirectory(inputDiretory, corpusName, corpusID, documentID)
 
 
 if __name__ == "__main__":
